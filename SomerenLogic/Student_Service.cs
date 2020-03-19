@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SomerenLogic
 {
@@ -23,15 +24,21 @@ namespace SomerenLogic
             }
             catch (Exception)
             {
+
+                MessageBox.Show("There was an error connecting to the database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error); //Show Error window if 
+
                 // something went wrong connecting to the database, so we will add a fake student to the list to make sure the rest of the application continues working!
                 List<Student> student = new List<Student>();
                 Student a = new Student();
-                a.Name = "Mr. Test Student";
+                a.FName = "Test";
+                a.LName = "Student";
                 a.Number = 474791;
                 a.BirthDate = DateTime.Parse("1990-07-04");
                 student.Add(a);
                 Student b = new Student();
-                b.Name = "Mrs. Test Student";
+                b.LName = "Student2";
+                b.FName = "Test";
+
                 b.Number = 197474;
                 b.BirthDate = DateTime.Parse("2019-03-04");
                 student.Add(b);
