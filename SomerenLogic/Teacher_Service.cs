@@ -26,7 +26,7 @@ namespace SomerenLogic
                     new Teacher
                     {
                         Id = 50101,
-                        Name = "Peter Stikker",
+                        TName = "Peter Stikker",
                         Person = 20101,
                         Subject = "Mathematics"
                     }

@@ -98,9 +98,12 @@ namespace SomerenUI
                 foreach (SomerenModel.Teacher t in TeacherList)
                 {
 
-                    ListViewItem li = new ListViewItem(new String[] { t.Id.ToString(), t.Name, t.Subject });
+                    ListViewItem li = new ListViewItem(new String[] { t.Id.ToString(), t.TName, t.Subject });
                     listViewTeachers.Items.Add(li);
                 }
+
+                listViewTeachers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent); //Auto resize colums to fit data
+                listViewTeachers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize); // Make sure headers fit
             }
         }
 
