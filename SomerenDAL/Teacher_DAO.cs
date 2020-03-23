@@ -28,10 +28,10 @@ namespace SomerenDAL
             {
                 Teacher Teacher = new Teacher()
                 {
-                    Id = (int)dr["Teacher_id"],
-                    TName = (String)(dr["Teacher_name"].ToString()),
-                    Subject = (String)(dr["Subject_Name"].ToString()),
-                    Person = (int)dr["Person_id"],
+                    Id = int.Parse(dr["Teacher_id"].ToString()),
+                    TName = (dr["Teacher_name"].ToString()),
+                    Subject = (dr["Subject_Name"].ToString()),
+                    Person = int.Parse(dr["Person_id"].ToString()),
                 };
                 Teachers.Add(Teacher);
             }

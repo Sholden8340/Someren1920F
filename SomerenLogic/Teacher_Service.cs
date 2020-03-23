@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using SomerenDAL;
 using SomerenModel;
 
@@ -19,8 +20,10 @@ namespace SomerenLogic
                 List<Teacher> Teachers = Teacher_db.Db_Get_All_Teachers();
                 return Teachers;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+
+                MessageBox.Show(e.Message);
                 return new List<Teacher>
                 {
                     new Teacher
