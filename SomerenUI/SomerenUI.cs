@@ -22,34 +22,27 @@ namespace SomerenUI
 
         private void SomerenUI_Load(object sender, EventArgs e)
         {
+            
+            //maximize panels
+            pnl_Cash_Register.Dock = DockStyle.Fill;
+            pnl_Dashboard.Dock = DockStyle.Fill;
+            pnl_Students.Dock = DockStyle.Fill;
+            pnl_Teachers.Dock = DockStyle.Fill;
+
+
             showPanel("Dashboard");
         }
 
         private void showPanel(string panelName)
         {
 
-            if(panelName == "Dashboard")
+            if (panelName == "Dashboard")
             {
-
-                // hide all other panels
-                pnl_Students.Hide();
-                pnl_Teachers.Hide();
-
-                // show dashboard
-                pnl_Dashboard.Show();
-                img_Dashboard.Show();
+                selectPanel(panelName);
             }
-            else if(panelName == "Students")
+            else if (panelName == "Students")
             {
-                // hide all other panels
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
-                pnl_Teachers.Hide();
-
-                // show students
-                pnl_Students.Show();
-
-                
+                selectPanel(panelName); //hide other panels and show relevant 
 
                 // fill the students listview within the students panel with a list of students
                 SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
@@ -74,15 +67,8 @@ namespace SomerenUI
             }
             else if (panelName == "Teachers")
             {
-                // hide all other panels
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
-                pnl_Students.Hide();
 
-                // show teachers
-                pnl_Teachers.Show();
-
-
+                selectPanel(panelName);
 
                 // fill the teachers listview within the teacher panel with a list of lecturers
                 SomerenLogic.Teacher_Service teacService = new SomerenLogic.Teacher_Service();
@@ -105,6 +91,77 @@ namespace SomerenUI
                 listViewTeachers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent); //Auto resize colums to fit data
                 listViewTeachers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize); // Make sure headers fit
             }
+            else if (panelName == "Cash_Register")
+            {
+                selectPanel(panelName);
+
+                SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
+                List<Student> studentList = studService.GetStudents();
+
+                //SomerenLogic.Drink_Service drink_Service = new SomerenLogic.Drink_Service();
+                //List<Drinks> drinkList = drink_Service.GetDrinks();
+
+                List<Drinks> drinkList = new List<Drinks>();
+                Drinks drink = new Drinks();
+                {
+                    drink.Drinkid = 1;
+                    drink.DrinkName = "Test Drink";
+                    drink.Stock = 10;
+                    drink.DrinkType = "Alcohlic";
+                    drink.Price = 2;
+                    drink.TotalSales = 200;
+                }
+
+                drinkList.Add(drink);
+
+                foreach (SomerenModel.Student s in studentList)
+                {
+                    ListViewItem li = new ListViewItem(new String[] { s.Number.ToString(), s.FName, s.LName, s.BirthDate.ToString() });
+                    registerListStudents.Items.Add($"{s.Number} {s.FName} {s.LName}");
+                }
+
+                foreach (SomerenModel.Drinks d in drinkList)
+                {
+                    ListViewItem li = new ListViewItem(new String[] {d.DrinkName}, d.Price.ToString());
+                    registerListDrinks.Items.Add($"{d.Drinkid} {d.DrinkName} - {d.Price} Tokens"); 
+                }
+
+            }
+        }
+
+        private void selectPanel(string panel)
+        {
+            pnl_Dashboard.Hide();
+            //img_Dashboard.Hide();
+            pnl_Students.Hide();
+            pnl_Teachers.Hide();
+            pnl_Cash_Register.Hide();
+
+            switch (panel)
+            {
+                case "Dashboard":
+                    pnl_Dashboard.Show();
+                    //img_Dashboard.Show();
+                    break;
+
+                case "Students":
+                    pnl_Students.Show();
+                    break;
+
+                case "Teachers":
+                    pnl_Teachers.Show();
+                    break;
+
+                case "Drinks":
+                    //pnl_Drinks.Show();
+                    break;
+
+                case "Cash_Register":
+                    pnl_Cash_Register.Show();
+                    break;
+            }
+
+
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,6 +232,37 @@ namespace SomerenUI
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void cashRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Cash_Register");
+        }
+
+        private void pnl_Register_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void registerListStudents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCheckout_Click(object sender, EventArgs e)
+        {
+            SomerenLogic.Register_Service register = new SomerenLogic.Register_Service();
+            register.Checkout(registerListStudents.SelectedItem.ToString(), registerListDrinks.SelectedItem.ToString());
         }
     }
 }

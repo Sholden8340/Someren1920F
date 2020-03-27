@@ -288,9 +288,10 @@
             this.pnl_Cash_Register.Controls.Add(this.registerListDrinks);
             this.pnl_Cash_Register.Controls.Add(this.registerListStudents);
             this.pnl_Cash_Register.Controls.Add(this.labelCashRegister);
-            this.pnl_Cash_Register.Location = new System.Drawing.Point(255, 199);
+            this.pnl_Cash_Register.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Cash_Register.Location = new System.Drawing.Point(0, 24);
             this.pnl_Cash_Register.Name = "pnl_Cash_Register";
-            this.pnl_Cash_Register.Size = new System.Drawing.Size(198, 116);
+            this.pnl_Cash_Register.Size = new System.Drawing.Size(962, 481);
             this.pnl_Cash_Register.TabIndex = 7;
             this.pnl_Cash_Register.Visible = false;
             this.pnl_Cash_Register.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Register_Paint);
