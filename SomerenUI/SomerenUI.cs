@@ -28,6 +28,7 @@ namespace SomerenUI
             pnl_Dashboard.Dock = DockStyle.Fill;
             pnl_Students.Dock = DockStyle.Fill;
             pnl_Teachers.Dock = DockStyle.Fill;
+            pnl_Activities.Dock = DockStyle.Fill;
 
 
             showPanel("Dashboard");
@@ -127,6 +128,33 @@ namespace SomerenUI
                 }
 
             }
+            else if(panelName == "Activities")
+            {
+                selectPanel(panelName);
+
+                // fill the teachers listview within the teacher panel with a list of lecturers
+                SomerenLogic.Activity_Service activityService = new SomerenLogic.Activity_Service();
+                List<Activity> ActivityList = activityService.GetActivities();
+
+                // clear the listview before filling it again
+                listViewActivities.Clear();
+                listViewActivities.View = View.Details;
+                listViewActivities.Columns.Add("ID");
+                listViewActivities.Columns.Add("Name");
+                listViewActivities.Columns.Add("Description");
+                listViewActivities.Columns.Add("No. of Students");
+                listViewActivities.Columns.Add("No. of Teachers");
+
+                foreach (SomerenModel.Activity a in ActivityList)
+                {
+
+                    ListViewItem li = new ListViewItem(new String[] { a.ID.ToString(), a.Name, a.Description, a.NumberOfStudents.ToString(), a.NumberOfSupervisors.ToString() });
+                    listViewActivities.Items.Add(li);
+                }
+
+                listViewActivities.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent); //Auto resize colums to fit data
+                listViewActivities.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize); // Make sure headers fit
+            }
         }
 
         private void selectPanel(string panel)
@@ -136,6 +164,7 @@ namespace SomerenUI
             pnl_Students.Hide();
             pnl_Teachers.Hide();
             pnl_Cash_Register.Hide();
+            pnl_Activities.Hide();
 
             switch (panel)
             {
@@ -158,6 +187,9 @@ namespace SomerenUI
 
                 case "Cash_Register":
                     pnl_Cash_Register.Show();
+                    break;
+                case "Activities":
+                    pnl_Activities.Show();
                     break;
             }
 
@@ -263,6 +295,111 @@ namespace SomerenUI
         {
             SomerenLogic.Register_Service register = new SomerenLogic.Register_Service();
             register.Checkout(registerListStudents.SelectedItem.ToString(), registerListDrinks.SelectedItem.ToString());
+        }
+
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Activities");
+        }
+
+        private void buttonAddActivity_Click(object sender, EventArgs e)
+        {
+            groupBoxEdit.Text = "Add";
+            groupBoxEdit.Show();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonEditActivity_Click(object sender, EventArgs e)
+        {
+            if(listViewActivities.SelectedItems.Count > 0)
+            {
+                groupBoxEdit.Text = "Edit";
+                groupBoxEdit.Show();
+
+                ListViewItem item = listViewActivities.SelectedItems[0];
+
+
+                textBoxActivityName.Text = item.SubItems[1].Text;
+                textBoxActivityDescription.Text = item.SubItems[2].Text;
+                textBoxActivityStudents.Text = item.SubItems[3].Text;
+                textBoxActivitySupervisors.Text= item.SubItems[4].Text;
+            }
+            else
+            {
+                MessageBox.Show("You must select an Activity to edit", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonDeleteActivity_Click(object sender, EventArgs e)
+        {
+            groupBoxEdit.Hide();
+
+            ListViewItem item = listViewActivities.SelectedItems[0];
+            Activity_Service activitydb = new Activity_Service();
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this activity?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
+            {
+                activitydb.RemoveActivity(int.Parse(item.SubItems[0].Text));
+            }
+
+            showPanel("Activities");
+        }
+
+        private void buttonActivitySave_Click(object sender, EventArgs e)
+        {
+            
+            if (textBoxActivityDescription.Text != null && textBoxActivityName.Text != null && textBoxActivityStudents.Text != null && textBoxActivitySupervisors.Text != null)
+            {
+                Activity_Service activitydb = new Activity_Service();
+                if (groupBoxEdit.Text == "Add")
+                {
+                    Activity a = new Activity
+                    {
+                        ID = -1,
+                        Name = textBoxActivityName.Text,
+                        Description = textBoxActivityDescription.Text,
+                        NumberOfStudents = int.Parse(textBoxActivityStudents.Text),
+                        NumberOfSupervisors = int.Parse(textBoxActivitySupervisors.Text),
+                    };
+                    activitydb.AddActivity(a);
+                }
+                else if(groupBoxEdit.Text == "Edit")
+                {
+                    ListViewItem item = listViewActivities.SelectedItems[0];
+                    Activity a = new Activity
+                    {
+                        ID = int.Parse(item.SubItems[0].Text),
+                        Name = textBoxActivityName.Text,
+                        Description = textBoxActivityDescription.Text,
+                        NumberOfStudents = int.Parse(textBoxActivityStudents.Text),
+                        NumberOfSupervisors = int.Parse(textBoxActivitySupervisors.Text),
+                    };
+                    activitydb.EditActivity(a);
+                }
+
+                showPanel("Activities");
+            }
+            else
+            {
+                MessageBox.Show("Fields cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            groupBoxEdit.Hide();
         }
     }
 }
