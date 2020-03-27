@@ -61,12 +61,32 @@
             this.registerListDrinks = new System.Windows.Forms.ListBox();
             this.registerListStudents = new System.Windows.Forms.ListBox();
             this.labelCashRegister = new System.Windows.Forms.Label();
+            this.pnl_Activities = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.listViewActivities = new System.Windows.Forms.ListView();
+            this.buttonEditActivity = new System.Windows.Forms.Button();
+            this.buttonAddActivity = new System.Windows.Forms.Button();
+            this.buttonDeleteActivity = new System.Windows.Forms.Button();
+            this.groupBoxEdit = new System.Windows.Forms.GroupBox();
+            this.textBoxActivityName = new System.Windows.Forms.TextBox();
+            this.textBoxActivityDescription = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.buttonActivitySave = new System.Windows.Forms.Button();
+            this.textBoxActivityStudents = new System.Windows.Forms.NumericUpDown();
+            this.textBoxActivitySupervisors = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnl_Students.SuspendLayout();
             this.pnl_Teachers.SuspendLayout();
             this.pnl_Cash_Register.SuspendLayout();
+            this.pnl_Activities.SuspendLayout();
+            this.groupBoxEdit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxActivityStudents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxActivitySupervisors)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -134,6 +154,7 @@
             this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.activitiesToolStripMenuItem.Text = "Activities";
+            this.activitiesToolStripMenuItem.Click += new System.EventHandler(this.activitiesToolStripMenuItem_Click);
             // 
             // roomsToolStripMenuItem
             // 
@@ -288,10 +309,9 @@
             this.pnl_Cash_Register.Controls.Add(this.registerListDrinks);
             this.pnl_Cash_Register.Controls.Add(this.registerListStudents);
             this.pnl_Cash_Register.Controls.Add(this.labelCashRegister);
-            this.pnl_Cash_Register.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Cash_Register.Location = new System.Drawing.Point(0, 24);
+            this.pnl_Cash_Register.Location = new System.Drawing.Point(255, 199);
             this.pnl_Cash_Register.Name = "pnl_Cash_Register";
-            this.pnl_Cash_Register.Size = new System.Drawing.Size(962, 481);
+            this.pnl_Cash_Register.Size = new System.Drawing.Size(198, 97);
             this.pnl_Cash_Register.TabIndex = 7;
             this.pnl_Cash_Register.Visible = false;
             this.pnl_Cash_Register.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Register_Paint);
@@ -355,11 +375,173 @@
             this.labelCashRegister.Text = "Cash Register";
             this.labelCashRegister.Click += new System.EventHandler(this.label2_Click);
             // 
+            // pnl_Activities
+            // 
+            this.pnl_Activities.Controls.Add(this.groupBoxEdit);
+            this.pnl_Activities.Controls.Add(this.buttonDeleteActivity);
+            this.pnl_Activities.Controls.Add(this.buttonAddActivity);
+            this.pnl_Activities.Controls.Add(this.buttonEditActivity);
+            this.pnl_Activities.Controls.Add(this.listViewActivities);
+            this.pnl_Activities.Controls.Add(this.label4);
+            this.pnl_Activities.Location = new System.Drawing.Point(486, 45);
+            this.pnl_Activities.Name = "pnl_Activities";
+            this.pnl_Activities.Size = new System.Drawing.Size(200, 100);
+            this.pnl_Activities.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(13, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(92, 24);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Activities";
+            // 
+            // listViewActivities
+            // 
+            this.listViewActivities.FullRowSelect = true;
+            this.listViewActivities.GridLines = true;
+            this.listViewActivities.HideSelection = false;
+            this.listViewActivities.Location = new System.Drawing.Point(13, 32);
+            this.listViewActivities.Name = "listViewActivities";
+            this.listViewActivities.ShowItemToolTips = true;
+            this.listViewActivities.Size = new System.Drawing.Size(935, 260);
+            this.listViewActivities.TabIndex = 1;
+            this.listViewActivities.UseCompatibleStateImageBehavior = false;
+            this.listViewActivities.SelectedIndexChanged += new System.EventHandler(this.listViewActivities_SelectedIndexChanged);
+            // 
+            // buttonEditActivity
+            // 
+            this.buttonEditActivity.Location = new System.Drawing.Point(13, 299);
+            this.buttonEditActivity.Name = "buttonEditActivity";
+            this.buttonEditActivity.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditActivity.TabIndex = 2;
+            this.buttonEditActivity.Text = "Edit";
+            this.buttonEditActivity.UseVisualStyleBackColor = true;
+            this.buttonEditActivity.Click += new System.EventHandler(this.buttonEditActivity_Click);
+            // 
+            // buttonAddActivity
+            // 
+            this.buttonAddActivity.Location = new System.Drawing.Point(94, 299);
+            this.buttonAddActivity.Name = "buttonAddActivity";
+            this.buttonAddActivity.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddActivity.TabIndex = 2;
+            this.buttonAddActivity.Text = "Add";
+            this.buttonAddActivity.UseVisualStyleBackColor = true;
+            this.buttonAddActivity.Click += new System.EventHandler(this.buttonAddActivity_Click);
+            // 
+            // buttonDeleteActivity
+            // 
+            this.buttonDeleteActivity.Location = new System.Drawing.Point(175, 299);
+            this.buttonDeleteActivity.Name = "buttonDeleteActivity";
+            this.buttonDeleteActivity.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeleteActivity.TabIndex = 2;
+            this.buttonDeleteActivity.Text = "Delete";
+            this.buttonDeleteActivity.UseVisualStyleBackColor = true;
+            this.buttonDeleteActivity.Click += new System.EventHandler(this.buttonDeleteActivity_Click);
+            // 
+            // groupBoxEdit
+            // 
+            this.groupBoxEdit.Controls.Add(this.textBoxActivitySupervisors);
+            this.groupBoxEdit.Controls.Add(this.textBoxActivityStudents);
+            this.groupBoxEdit.Controls.Add(this.buttonActivitySave);
+            this.groupBoxEdit.Controls.Add(this.label8);
+            this.groupBoxEdit.Controls.Add(this.label7);
+            this.groupBoxEdit.Controls.Add(this.label6);
+            this.groupBoxEdit.Controls.Add(this.label5);
+            this.groupBoxEdit.Controls.Add(this.textBoxActivityDescription);
+            this.groupBoxEdit.Controls.Add(this.textBoxActivityName);
+            this.groupBoxEdit.Location = new System.Drawing.Point(289, 299);
+            this.groupBoxEdit.Name = "groupBoxEdit";
+            this.groupBoxEdit.Size = new System.Drawing.Size(407, 153);
+            this.groupBoxEdit.TabIndex = 3;
+            this.groupBoxEdit.TabStop = false;
+            this.groupBoxEdit.Text = "Edit";
+            this.groupBoxEdit.Visible = false;
+            // 
+            // textBoxActivityName
+            // 
+            this.textBoxActivityName.Location = new System.Drawing.Point(142, 19);
+            this.textBoxActivityName.Name = "textBoxActivityName";
+            this.textBoxActivityName.Size = new System.Drawing.Size(259, 20);
+            this.textBoxActivityName.TabIndex = 0;
+            // 
+            // textBoxActivityDescription
+            // 
+            this.textBoxActivityDescription.Location = new System.Drawing.Point(142, 45);
+            this.textBoxActivityDescription.Name = "textBoxActivityDescription";
+            this.textBoxActivityDescription.Size = new System.Drawing.Size(259, 20);
+            this.textBoxActivityDescription.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Activity Name";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(17, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Description";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 74);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Number of Students";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(17, 100);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(114, 13);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Number of Supervisors";
+            // 
+            // buttonActivitySave
+            // 
+            this.buttonActivitySave.Location = new System.Drawing.Point(326, 123);
+            this.buttonActivitySave.Name = "buttonActivitySave";
+            this.buttonActivitySave.Size = new System.Drawing.Size(75, 23);
+            this.buttonActivitySave.TabIndex = 5;
+            this.buttonActivitySave.Text = "Save";
+            this.buttonActivitySave.UseVisualStyleBackColor = true;
+            this.buttonActivitySave.Click += new System.EventHandler(this.buttonActivitySave_Click);
+            // 
+            // textBoxActivityStudents
+            // 
+            this.textBoxActivityStudents.Location = new System.Drawing.Point(142, 72);
+            this.textBoxActivityStudents.Name = "textBoxActivityStudents";
+            this.textBoxActivityStudents.Size = new System.Drawing.Size(259, 20);
+            this.textBoxActivityStudents.TabIndex = 6;
+            this.textBoxActivityStudents.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // textBoxActivitySupervisors
+            // 
+            this.textBoxActivitySupervisors.Location = new System.Drawing.Point(142, 98);
+            this.textBoxActivitySupervisors.Name = "textBoxActivitySupervisors";
+            this.textBoxActivitySupervisors.Size = new System.Drawing.Size(259, 20);
+            this.textBoxActivitySupervisors.TabIndex = 6;
+            this.textBoxActivitySupervisors.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
             // SomerenUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 505);
+            this.Controls.Add(this.pnl_Activities);
             this.Controls.Add(this.pnl_Cash_Register);
             this.Controls.Add(this.pnl_Dashboard);
             this.Controls.Add(this.pnl_Students);
@@ -382,6 +564,12 @@
             this.pnl_Teachers.PerformLayout();
             this.pnl_Cash_Register.ResumeLayout(false);
             this.pnl_Cash_Register.PerformLayout();
+            this.pnl_Activities.ResumeLayout(false);
+            this.pnl_Activities.PerformLayout();
+            this.groupBoxEdit.ResumeLayout(false);
+            this.groupBoxEdit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxActivityStudents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textBoxActivitySupervisors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -420,6 +608,22 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox registerListDrinks;
         private System.Windows.Forms.Button buttonCheckout;
+        private System.Windows.Forms.Panel pnl_Activities;
+        private System.Windows.Forms.ListView listViewActivities;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonDeleteActivity;
+        private System.Windows.Forms.Button buttonAddActivity;
+        private System.Windows.Forms.Button buttonEditActivity;
+        private System.Windows.Forms.GroupBox groupBoxEdit;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxActivityDescription;
+        private System.Windows.Forms.TextBox textBoxActivityName;
+        private System.Windows.Forms.Button buttonActivitySave;
+        private System.Windows.Forms.NumericUpDown textBoxActivityStudents;
+        private System.Windows.Forms.NumericUpDown textBoxActivitySupervisors;
     }
 }
 
