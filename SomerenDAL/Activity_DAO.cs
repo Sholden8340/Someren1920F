@@ -46,7 +46,7 @@ namespace SomerenDAL
                 $"VALUES ('{a.Name}', '{a.Description}', {a.NumberOfStudents}, {a.NumberOfSupervisors})";
 
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            ExecuteSelectQuery(query, sqlParameters);
+            ExecuteEditQuery(query, sqlParameters);
         }        
         
         public void EditActvity(Activity a)
@@ -58,7 +58,7 @@ namespace SomerenDAL
             //MessageBox.Show(query);
 
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            ExecuteSelectQuery(query, sqlParameters);
+            ExecuteEditQuery(query, sqlParameters);
         }
 
         public void RemoveActvity(int id)
@@ -67,7 +67,7 @@ namespace SomerenDAL
             $"WHERE Activity_ID = {id}";
 
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            ExecuteSelectQuery(query, sqlParameters);
+            ExecuteEditQuery(query, sqlParameters);
         }
     }
 }

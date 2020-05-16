@@ -401,5 +401,17 @@ namespace SomerenUI
         {
             groupBoxEdit.Hide();
         }
+
+        private void drinksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Drinks");
+
+            /*The list is displayed immediately after the menu button has been loaded. 
+            The list is included in a ListView. 
+            The query does not use SELECT * FROM. 
+            The list shows names, amount in stock and sales price in separate columns. 
+            The user also has the option of adding new drinks, changing drinks (name, amount in stock, sales price) and removing drinks.
+            */
+        }
     }
 }

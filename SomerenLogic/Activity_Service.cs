@@ -37,22 +37,22 @@ namespace SomerenLogic
 
         }
 
-        public void AddActivity(Activity a)
+        public void AddActivity(Activity Activity)
         {
             try
             {
-                Activity_db.AddActvity(a);
+                Activity_db.AddActvity(Activity);
             }
             catch (Exception e)
             {
                 MessageBox.Show("There was an error adding to the Database \n" + e, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }        
-        public void EditActivity(Activity a)
+        public void EditActivity(Activity Activity)
         {
             try
             {
-                Activity_db.EditActvity(a);
+                Activity_db.EditActvity(Activity);
             }
             catch (Exception e)
             {
@@ -68,7 +68,7 @@ namespace SomerenLogic
             }
             catch (Exception e)
             {
-                MessageBox.Show("There was an error adding to the Database \n" + e, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               MessageBox.Show("There was an error adding to the Database \n" + e, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
