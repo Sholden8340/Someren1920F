@@ -39,6 +39,7 @@
             this.activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cashRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_Dashboard = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_Dashboard = new System.Windows.Forms.Label();
@@ -77,7 +78,6 @@
             this.buttonEditActivity = new System.Windows.Forms.Button();
             this.listViewActivities = new System.Windows.Forms.ListView();
             this.label4 = new System.Windows.Forms.Label();
-            this.drinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -171,6 +171,13 @@
             this.cashRegisterToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.cashRegisterToolStripMenuItem.Text = "Cash Register";
             this.cashRegisterToolStripMenuItem.Click += new System.EventHandler(this.cashRegisterToolStripMenuItem_Click);
+            // 
+            // drinksToolStripMenuItem
+            // 
+            this.drinksToolStripMenuItem.Name = "drinksToolStripMenuItem";
+            this.drinksToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.drinksToolStripMenuItem.Text = "Drinks";
+            this.drinksToolStripMenuItem.Click += new System.EventHandler(this.drinksToolStripMenuItem_Click);
             // 
             // pnl_Dashboard
             // 
@@ -386,10 +393,12 @@
             this.pnl_Activities.Controls.Add(this.buttonEditActivity);
             this.pnl_Activities.Controls.Add(this.listViewActivities);
             this.pnl_Activities.Controls.Add(this.label4);
-            this.pnl_Activities.Location = new System.Drawing.Point(486, 45);
+            this.pnl_Activities.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Activities.Location = new System.Drawing.Point(0, 24);
             this.pnl_Activities.Name = "pnl_Activities";
-            this.pnl_Activities.Size = new System.Drawing.Size(200, 100);
+            this.pnl_Activities.Size = new System.Drawing.Size(962, 481);
             this.pnl_Activities.TabIndex = 8;
+            this.pnl_Activities.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Activities_Paint);
             // 
             // groupBoxEdit
             // 
@@ -485,6 +494,7 @@
             this.textBoxActivityName.Name = "textBoxActivityName";
             this.textBoxActivityName.Size = new System.Drawing.Size(259, 20);
             this.textBoxActivityName.TabIndex = 0;
+            this.textBoxActivityName.TextChanged += new System.EventHandler(this.textBoxActivityName_TextChanged);
             // 
             // buttonDeleteActivity
             // 
@@ -538,13 +548,6 @@
             this.label4.Size = new System.Drawing.Size(92, 24);
             this.label4.TabIndex = 0;
             this.label4.Text = "Activities";
-            // 
-            // drinksToolStripMenuItem
-            // 
-            this.drinksToolStripMenuItem.Name = "drinksToolStripMenuItem";
-            this.drinksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.drinksToolStripMenuItem.Text = "Drinks";
-            this.drinksToolStripMenuItem.Click += new System.EventHandler(this.drinksToolStripMenuItem_Click);
             // 
             // SomerenUI
             // 

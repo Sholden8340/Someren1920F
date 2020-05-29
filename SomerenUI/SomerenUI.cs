@@ -137,6 +137,15 @@ namespace SomerenUI
                 List<Activity> ActivityList = activityService.GetActivities();
 
                 // clear the listview before filling it again
+                groupBoxEdit.Hide();//hide edit box
+                textBoxActivityName.Clear();
+                textBoxActivityDescription.Clear();
+                textBoxActivityStudents.Value = 0;
+                textBoxActivitySupervisors.Value = 0;
+
+
+
+
                 listViewActivities.Clear();
                 listViewActivities.View = View.Details;
                 listViewActivities.Columns.Add("ID");
@@ -412,6 +421,16 @@ namespace SomerenUI
             The list shows names, amount in stock and sales price in separate columns. 
             The user also has the option of adding new drinks, changing drinks (name, amount in stock, sales price) and removing drinks.
             */
+        }
+
+        private void pnl_Activities_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBoxActivityName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
