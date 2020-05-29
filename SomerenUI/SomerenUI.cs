@@ -158,6 +158,8 @@ namespace SomerenUI
                 {
 
                     ListViewItem li = new ListViewItem(new String[] { a.ID.ToString(), a.Name, a.Description, a.NumberOfStudents.ToString(), a.NumberOfSupervisors.ToString() });
+
+                    li.Tag = "act_" + a.Name;
                     listViewActivities.Items.Add(li);
                 }
 
@@ -324,6 +326,8 @@ namespace SomerenUI
 
         private void buttonEditActivity_Click(object sender, EventArgs e)
         {
+
+
             if(listViewActivities.SelectedItems.Count > 0)
             {
                 groupBoxEdit.Text = "Edit";
@@ -367,6 +371,11 @@ namespace SomerenUI
                 Activity_Service activitydb = new Activity_Service();
                 if (groupBoxEdit.Text == "Add")
                 {
+                    if (listViewActivities.Items.Contains(listViewActivities.FindItemWithText(textBoxActivityName.Text)))
+                    {
+                        MessageBox.Show("This Activity Already Exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     Activity a = new Activity
                     {
                         ID = -1,
